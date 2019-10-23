@@ -11,9 +11,12 @@ const check = require('./helpers/check')
 const {send_error} = require('./helpers/errors')
 
 const requirements = async (table, body) => {
-    const not_required = ['created', 'updated']
+    const not_required = ['created_at', 'updated_at']
     const required_fields = (await get.required(table)).filter(field => not_required.indexOf(field) === -1)
     const missing_fields = required_fields.filter(field => !body.hasOwnProperty(field))
+    // console.log('nr', not_required)
+    // console.log('r', required_fields)
+    // console.log('m', missing_fields)
     return {required_fields: required_fields, missing_fields: missing_fields}
 }
 
@@ -30,7 +33,7 @@ module.exports =  async (req, res, next) => {
 
             //check if all required fields are present
             const {required_fields, missing_fields} = await requirements(table, req.body)
-            if(missing_fields.length) return send_error(res, '23502', table, missing_fields, required_fields)
+            if(missing_fields.length) return send_error(res, '23502', table, missing_fields, required_fields)            
 
             //check if all unique fields are in fact unique
             const {unique_fields, unremarkable_fields} = await unique(table, req.body)

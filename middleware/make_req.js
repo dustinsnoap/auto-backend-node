@@ -47,6 +47,13 @@ module.exports = async (req, res, next) => {
                     next()
                 })
             }
+            break
+        }
+        case 'LOGIN': {
+            await add('sessions', req.body)
+            req.response = req.user
+            req.status = 200
+            next()
         }
     }
 }

@@ -15,7 +15,7 @@ const send_error = (res, code, table, fields, expected) => {
         case '22003': error.status = 500; error.defail = `Numeric value out of range.`; break
         case '22007': error.status = 500; error.detail = `What time is it? I don't know I'm a suptid computer.`; break
         case '23502': error.status = 500; error.detail = `Requirements not met.`; break
-        case '23503': error.status = 500; error.detail = `Foreign key violation; cannot remove without first removing connected data. || foreign key doesn't exist.`; break
+        case '23503': error.status = 500; error.detail = `No users exist with that id.`; break
         case '23505': error.status = 500; error.detail = `Unremarkable fields.`; break
         case '22P02': error.status = 500; error.detail = `Invalid text representation???`; break
         case '42703': error.status = 500; error.detail = `Undefined column. ${res}`; break

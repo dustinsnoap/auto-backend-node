@@ -1,4 +1,4 @@
-const {add, get, get_all, update, remove, remove_all} = require('../config/models')
+const {add, get, get_all, update, remove, remove_all, remove_sessions} = require('../config/models')
 const {send_error} = require('./helpers/errors')
 
 module.exports = async (req, res, next) => {
@@ -36,13 +36,16 @@ module.exports = async (req, res, next) => {
             break
         }
         case 'DELETE': {
+            if(req.table === 'users') {
+                await remove_sessions('sessions', 4)
+            }
             if(req.array) {
-                remove_all(req.table).then(res => {
+                await remove_all(req.table).then(res => {
                     req.response = `Everything has been terminated!`
                     next() 
                 })
             } else {
-                remove(req.table, req.id).then(res => {
+                await remove(req.table, req.id).then(res => {
                     req.response = res
                     next()
                 })

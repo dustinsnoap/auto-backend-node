@@ -36,11 +36,14 @@ const remove = async (tbl, id) => {
 //:terminate all rows from given table
 const remove_all = async (tbl) => await db(tbl).delete()
 
+const remove_sessions = async (tbl, user_id) => await db(tbl).where({users: user_id}).delete()
+
 module.exports = {
     add,
     get,
     get_all,
     update,
     remove,
-    remove_all
+    remove_all,
+    remove_sessions
 }

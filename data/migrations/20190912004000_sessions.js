@@ -8,6 +8,8 @@ exports.up = (knex) =>
             .references('id')
             .inTable('users')
             .notNullable()
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE')
         tbl.text('session_id')
             .unique()
             .notNullable()

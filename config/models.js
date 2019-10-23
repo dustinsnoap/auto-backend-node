@@ -6,8 +6,9 @@ const db = require('../data/dbConfig')
 //CREATE
 //:adds and returns new row to given table
 const add = async (tbl, obj) => {
-    await db(tbl).insert(obj)
-    return await db(tbl).where(obj).first()
+    const id = [await db(tbl).insert(obj).returning('id')][0][0]
+    return await db(tbl).where({id}).first()
+    // return that
 }
 
 //READ

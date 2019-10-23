@@ -10,7 +10,6 @@ module.exports = async (req, res, next) => {
             req.table = table
             req.body = get.body(columns, req.body)
             req.status = 201
-
             next()
             break
         }

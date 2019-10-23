@@ -10,7 +10,7 @@ exports.up = (knex) =>
             .references('id')
             .inTable('users')
             .notNullable()
-        tbl.specificType('items', 'TEXT[]')
+        tbl.specificType('items', 'JSON[]')
         tbl.timestamps(true, true)
     })
 

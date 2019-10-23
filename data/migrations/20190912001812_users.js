@@ -7,6 +7,7 @@ exports.up = (knex) =>
             .notNullable()
         tbl.text('username')
             .unique()
+            .notNullable()
         tbl.text('password')
             .notNullable()
         tbl.text('email')

@@ -11,6 +11,7 @@ server.use(express.json())  //json all the things!
 //APP Middleware
 //:add these the order you want to use them
 const warez = [
+    require('../middleware/customroutes'),
     require('../middleware/constraints'),
     require('../middleware/encrypt'),
     require('../middleware/prepare_req'),
